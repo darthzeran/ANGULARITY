@@ -27,7 +27,7 @@ angular.module('News', ['ui.router'])
   'postFactory',
   function($scope, postFactory){
     $scope.posts = postFactory.posts;    
-    $scope.test = 'Hello world!';
+ //   $scope.test = 'Hello world!';
     
     $scope.addPost = function(){
     if($scope.formContent === '') { return; }
