@@ -1,83 +1,40 @@
-
-angular.module('Convert', ['ui.router'])
-.factory('postFactory', [function(){
-  var o = {
-    posts: []
-  };
-  return o;
-}])
-.config([
-  '$stateProvider',
-  '$urlRouterProvider',
-  function($stateProvider, $urlRouterProvider) {
-    $stateProvider
-      .state('home', {
-        url: '/home',
-        templateUrl: '/home.html',
-        controller: 'MainCtrl'
-      })
-     .state('posts', {
-        url: '/posts/{id}',
-        templateUrl: '/posts.html',
-        controller: 'PostCtrl'
-      });
-    $urlRouterProvider.otherwise('home');
-}])
+angular.module('Convert', [])
 .controller('MainCtrl', [
   '$scope',
-  'postFactory',
-  function($scope, postFactory){
-    $scope.posts = postFactory.posts;    
-//    $scope.test = 'Hello world!';
+  '$http',
+  function($scope, $http){
+    //$scope.posts = postFactory.posts;    
+    //$scope.test = 'Hello world!';
     
-    $scope.addPost = function(){
-    if($scope.formContent === '') { return; }
-    $scope.posts.push({
-      title: $scope.formContent,
-      upvotes: 0,
-      comments: []
-    });
-    $scope.title = '';
-    };
+    $scope.countries ={};
+    console.log("im here");    
 
-    $scope.incrementUpvotes = function(post) {
-      post.upvotes += 1;
-    }; 
+    $http.get('http://api.fixer.io/latest?base=ZAR')
+    .then(function(res){
+	    console.log(res);
+	    //var a = res.data.rates;
+	    $scope.countries = res.data.rates;
+	    //$scope.toType= $scope.rates.INR;
+	    //$scope.fromType = $scope.rates.USD;
+	    //$scope.fromValue =1;
+	    //$scope.forExConvert();
+    });     
+
+    $scope.setFrom = function(key, val){
+    	$scope.from = key;
+	$scope.fromType = val;	
+    };
+ 
+    $scope.setTo = function(key, val){
+    	$scope.to = key;
+	$scope.toType = val;	
+    };
     
+    $scope.convert = function() {
+	$scope.toValue = $scope.fromValue * ($scope.toType * (1 / $scope.fromType));
+	$scope.toValue = $scope.toValue; 
+    };
   }
   
-])
-.controller('PostCtrl', [
-  '$scope',
-  '$stateParams',
-  'postFactory', 
-  function($scope, $stateParams, postFactory){
-    $scope.post = postFactory.posts[$stateParams.id];
-    $scope.addComment = function(){
-      if($scope.body === '') { return; }
-      $scope.post.comments.push({
-        body: $scope.body,
-        upvotes: 0
-      });
-      $scope.body = '';
-    };
-  $scope.incrementUpvotes = function(comment){
-    comment.upvotes += 1; 
-  };
-}]);
-
-
-
-
-
-
-
-
-
-
-      
-     
-
-
-
+]);
 
