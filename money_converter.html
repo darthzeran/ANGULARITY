@@ -24,9 +24,12 @@
   background-color: #0099ff;
   }
   .page-header{
+  position:center;
   color: #005c99;
   }
-  
+  table, th, td {
+    border: 1px solid black;
+}
 #left{
 background-color:#CBE32D;
 }
@@ -43,27 +46,27 @@ background-color:#CBE32D;
     <!-- 9709a6e517484b8d6ac2a9aea00a147fffd46873-->
 
 <div class="container">
-  <div class="page-header">
+  <div class="page-header"  align="center">
     <h1>Welcome to the Conversion Excursion</h1>
   </div>
-  <p><b>Here you may view, compare, and examine exchange rates!</b></p>
+  <p  align="center"><b>Here you may view, compare, and examine exchange rates!</b></p>
  
 
 </div>
 
  
 <div class="row">
-  <div class="col-md-3" id="left">
-	<h3> From </h3>
-	<div ng-repeat = "(key, value) in  countries" ng-click="setFrom(key, value)">
-     	   {{key}}
+  <div class="col-md-3" id="left"  align="center">
+	<h3> From -> </h3>
+	<div style="font-size: 20px"  ng-repeat = "(key, value) in  countries" ng-click="setFrom(key, value)">
+     	 <button class="btn btn-info"> <b> {{key}}</b>  </button>
   	</div>
   </div>
 
 
-  <div class="col-md-6"><b>
+  <div class="col-md-6"  align="center"><b>
  
-<table style="width:50%">
+<table  style="width:50%">
   <tr>
     <th>From: {{from}}</th>
     <th>To: {{to}}</th>
@@ -73,17 +76,16 @@ background-color:#CBE32D;
     <td><input type="number" ng-model="toValue"></td>
   </tr>
  </table>
-=======
-  <p>1. Select a country under From. <br>2. Select a country under To. <br>3. Enter the amount for conversion </p>
+<p>1. Select a country under From. <br>2. Select a country under To. <br>3. Enter the amount for conversion </p>
   <br><br><br><br><br>
   <img src="http://media.istockphoto.com/photos/green-dollar-sign-in-green-and-white-picture-id104248221?k=6&m=104248221&s=170667a&w=0&h=GEEn-g36tzNuU0wGAUbUw07Heyy1XhbT9zaTrCbTnN0=" 
 alt="dollar sign" position= absolute; style="height: 350px; width: 50%">
 </div>
 
- <div class="col-md-3" id="right">
-	<h3>To</h3>
-  	<div ng-repeat = "(key, value) in  countries" ng-click="setTo(key, value)">
-     	   {{key}}
+ <div class="col-md-3" id="right"  align="center">
+	<h3>-> To</h3>
+  	<div style="font-size: 20px" ng-repeat = "(key, value) in  countries" ng-click="setTo(key, value)">
+     	   <button class="btn btn-info"> <b> {{key}}</b>  </button>
   	</div>
   </div>
 
