@@ -23,6 +23,7 @@ angular.module('Convert', [])
     $scope.setFrom = function(key, val){
     	$scope.from = key;
 	$scope.fromType = val;	
+	//$scope.convert();
     };
  
     $scope.setTo = function(key, val){
