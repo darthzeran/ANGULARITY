@@ -3,25 +3,30 @@
 <head>
   <title>Currency Converter</title>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+
   <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
   <script src="money_converter.js"></script>
+
+  <script src="money_converter.js"></script>
+  <script   src="https://code.jquery.com/jquery-3.1.1.slim.min.js"   integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="   crossorigin="anonymous"></script>
    <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+  
   <style>
   body{
   background-color: #A8CD1B;
   }
   .container{
-  background-color: #004BFF;
+  background-color: #0099ff;
   }
   .page-header{
-  color: #00E61A;
+  color: #005c99;
   }
-  table, th, td {
-    border: 1px solid black;
-}
+  
 #left{
 background-color:#CBE32D;
 }
@@ -31,88 +36,71 @@ background-color:#CBE32D;
   </style>
   
 </head>
-<img src="http://media.istockphoto.com/photos/green-dollar-sign-in-green-and-white-picture-id104248221?k=6&m=104248221&s=170667a&w=0&h=GEEn-g36tzNuU0wGAUbUw07Heyy1XhbT9zaTrCbTnN0=" 
-alt="dollar sign" position= absolute; style="height: 50px;">
-<body ng-app="Convert">
+
+
+
+<body ng-app="Convert" ng-controller="MainCtrl">
+    <!-- 9709a6e517484b8d6ac2a9aea00a147fffd46873-->
 
 <div class="container">
   <div class="page-header">
     <h1>Welcome to the Conversion Excursion</h1>
   </div>
-  <p>Here you may view, compare, and examine exchange rates!</p>
-  <p>Instructions:</p>
+  <p><b>Here you may view, compare, and examine exchange rates!</b></p>
+ 
+
 </div>
 
+ 
 <div class="row">
-  <div class="col-md-3" id="left">><b>Countries on this side unless the only one we can get is the U.S.</b><br>space<br>space<br>
-  space<br>space<br>space<br>space<br>
-space<br>space<br>space<br> space<br>space<br>space<br>
-space<br>space<br> space<br>space<br>space<br>space<br>
-space<br>space<br>space<br>space<br>space<br></div>
+  <div class="col-md-3" id="left">
+	<h3> From </h3>
+	<div ng-repeat = "(key, value) in  countries" ng-click="setFrom(key, value)">
+     	   {{key}}
+  	</div>
+  </div>
 
 
   <div class="col-md-6"><b>
-  Hopefully here we can get the conversion thing<br>space<br>space<br></b>
-  space<br>space<br>space<br>space<br>space<br>
- ///////<table style="width:50%">
-  <tr>
-    <th>Country converted to:</th>
-    <th>Amount</th>
-  </tr>
-  <tr>
-    <td>idk England</td>
-    <td>456 pounds</td>
-  </tr>
-  <th>
-  RATE
-  </th>
-</table>
-  space<br>space<br>space<br> space<br>space<br>space<br>space<br>
-space<br>space<br>space<br>space<br>hopefully here we get somehting else? comment box, graph etc<br>
+ 
 <table style="width:50%">
   <tr>
-    <th>Country converted to:</th>
-    <th>Amount</th>
+    <th>From: {{from}}</th>
+    <th>To: {{to}}</th>
   </tr>
   <tr>
-    <td>idk England</td>
-    <td>456 pounds</td>
+    <td><input type="text" placeholder="enter value" data-ng-model="fromValue" data-ng-change="convert()"></td>
+    <td><input type="number" ng-model="toValue"></td>
   </tr>
-</table>
-
-  </div><br>
-<!--if you can an updating angular table.  i looked idk how
-<div ng-app="Convert" ng-controller="history">
-
-  <tr ng-repeat="x in names">
-    <td>{{ x.Name }}</td>
-    <td>{{ x.Country }}</td>
-  </tr>
-</table>
-
-</div>
--->
-
-
-
-  
-  
-  <div class="col-md-3" id="right"><strong>
-  Country to which we are converting over here<br>space<br>space<br></strong>
-  space<br>space<br>space<br>space<br>
-space<br>space<br>space<br> space<br>space<br>space<br>
-space<br>space<br> space<br>space<br>space<br>space<br>
-space<br>space<br>space<br>space<br>space<br>
-</div>
+ </table>
+=======
+  <p>1. Select a country under From. <br>2. Select a country under To. <br>3. Enter the amount for conversion </p>
+  <br><br><br><br><br>
+  <img src="http://media.istockphoto.com/photos/green-dollar-sign-in-green-and-white-picture-id104248221?k=6&m=104248221&s=170667a&w=0&h=GEEn-g36tzNuU0wGAUbUw07Heyy1XhbT9zaTrCbTnN0=" 
+alt="dollar sign" position= absolute; style="height: 350px; width: 50%">
 </div>
 
+ <div class="col-md-3" id="right">
+	<h3>To</h3>
+  	<div ng-repeat = "(key, value) in  countries" ng-click="setTo(key, value)">
+     	   {{key}}
+  	</div>
+  </div>
 
   </div>
 
 
+  
+  
+  
+
+
+
+  
 
 
 
 
-  </body>
+
+ </body>
 </html>
